@@ -1,0 +1,47 @@
+<ion-app>
+  <ion-menu side="start" menuId="custom" contentId="main">
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item-divider>
+          <ion-text color="secondary"><strong>My Recipes</strong></ion-text>
+        </ion-item-divider>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerLink]="['/home']">
+            <ion-icon slot="start" name="home" src="../assets/icon/house-door.svg"></ion-icon>
+            Home
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerLink]="['/favoritos']">
+            <ion-icon slot="start" name="heart" src="../assets/icon/heart.svg"></ion-icon>
+            Favorites
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-list>
+        <ion-item-divider>
+          <ion-text color="secondary"><strong>User</strong></ion-text>
+        </ion-item-divider>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerLink]="['/perfil']">
+            <ion-icon slot="start" name="person" src="../assets/icon/person-circle.svg"></ion-icon>
+            Profile
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerLink]="['/logout']">
+            <ion-icon slot="start" name="log-out" src="../assets/icon/box-arrow-left.svg"></ion-icon>
+            Logout
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
