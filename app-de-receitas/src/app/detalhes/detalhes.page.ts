@@ -8,8 +8,10 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./detalhes.page.scss'],
 })
 export class DetalhesPage implements OnInit {
+
   id: string = '';
   receita: any;
+  video: any;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
@@ -26,5 +28,16 @@ export class DetalhesPage implements OnInit {
       this.receita = data.meals[0];
       console.log(this.receita);
     });
+  }
+
+  mostrarVideo() {
+    if(this.receita.strYoutube) {
+      this.video = this.getVideoEmbedUrl(this.receita.strYoutube);
+    }
+  }
+
+  getVideoEmbedUrl(url: string): string {
+    const videoId = url.split('v=')[1];
+    return `https://www.youtube.com/embed/${videoId}`;
   }
 }
