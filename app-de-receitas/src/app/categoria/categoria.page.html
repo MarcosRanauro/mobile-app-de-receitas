@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Receitas de {{ categoria }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="container">
+  <ion-card *ngFor="let meal of receitas" class="card-container">
+    <ion-button (click)="abrirDetalhesReceita(meal.idMeal)" fill="clear">
+      <img [src]="meal.strMealThumb" alt="{{ meal.strMeal }} image" />
+      <ion-card-header class="card-header">
+        <ion-card-title>{{ meal.strMeal }}</ion-card-title>
+      </ion-card-header>
+    </ion-button>
+  </ion-card>
+</ion-content>

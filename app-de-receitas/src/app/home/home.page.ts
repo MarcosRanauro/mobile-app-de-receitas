@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,23 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  dataReturned: any;
+
+  constructor(private apiService: ApiService, private navCtrl: NavController) {}
+
+  ngOnInit() {
+    this.buscarCategorias();
+  }
+
+  buscarCategorias() {
+    this.apiService.buscarCategorias().subscribe((data) => {
+      this.dataReturned = data;
+      console.log(this.dataReturned);
+    });
+  }
+
+  abrirCategoria(categoria: string) {
+    this.navCtrl.navigateForward(`/categoria/${categoria}`);
+  }
 
 }
