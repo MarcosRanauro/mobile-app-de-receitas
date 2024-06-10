@@ -28,4 +28,8 @@ export class HomePage {
     this.navCtrl.navigateForward(`/categoria/${categoria}`);
   }
 
+  navegarPerfil() {
+    this.navCtrl.navigateForward(`/perfil`);
+  }
+
 }
