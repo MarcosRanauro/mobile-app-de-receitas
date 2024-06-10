@@ -5,22 +5,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <form>
+  <form (ngSubmit)="register()">
     <ion-item>
       <ion-label position="floating">Name</ion-label>
-      <ion-input type="text" name="name" required></ion-input>
+      <ion-input type="text" name="name" required [(ngModel)]="name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" name="email" required></ion-input>
+      <ion-input type="email" name="email" required [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" name="password" required></ion-input>
+      <ion-input type="password" name="password" required [(ngModel)]="password"></ion-input>
     </ion-item>
 
-    <ion-button expand="full" type="submit" class="ion-margin-top">Register</ion-button>
+    <ion-button expand="full" type="submit" class="ion-margin-top" (click)="navegarLogin()">Register</ion-button>
   </form>
 </ion-content>
