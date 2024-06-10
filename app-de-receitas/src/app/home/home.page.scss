@@ -1,6 +1,6 @@
 .centered-title {
   text-align: center;
-  flex-grow: 1; /* Faz o título ocupar todo o espaço restante */
+  flex-grow: 1;
 }
 
 ion-toolbar {
@@ -10,15 +10,15 @@ ion-toolbar {
 }
 
 ion-avatar {
-  width: 40px; /* Define o tamanho do avatar */
+  width: 40px;
   height: 40px;
-  margin-right: 10px; /* Adiciona um espaço à direita */
+  margin-right: 10px;
 }
 
 .img-avatar {
   width: 100%;
   height: 100%;
-  border-radius: 50%; /* Deixa a imagem redonda */
+  border-radius: 50%;
 }
 
 ion-buttons[slot="end"] {
