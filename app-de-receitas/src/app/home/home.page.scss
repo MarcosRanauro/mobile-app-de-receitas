@@ -1,27 +1,90 @@
-#container {
+.centered-title {
   text-align: center;
+  flex-grow: 1; /* Faz o título ocupar todo o espaço restante */
+}
 
+ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-avatar {
+  width: 40px; /* Define o tamanho do avatar */
+  height: 40px;
+  margin-right: 10px; /* Adiciona um espaço à direita */
+}
+
+.img-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Deixa a imagem redonda */
+}
+
+ion-buttons[slot="end"] {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 10px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.container {
+  padding: 16px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.search-container {
+  padding: 10px 0;
 }
 
-#container a {
-  text-decoration: none;
+.categories-container h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+ion-grid {
+  padding: 0;
+}
+
+ion-card {
+  margin: 8px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.card-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+ion-card-header {
+  font-size: 1em;
+  text-align: center;
+}
+
+ion-card-content {
+  font-size: 0.8em;
+  color: grey;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  ion-col {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
 }
