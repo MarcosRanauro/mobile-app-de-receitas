@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,7 @@ export class LoginPage {
   email: string = '';
   password: string = '';
 
-  constructor(private navCtrl: NavController, private authService: AuthService, private toastr: ToastrService) { }
+  constructor(private navCtrl: NavController, private authService: AuthService) { }
 
   login() {
     this.authService.loginUser(this.email, this.password)
@@ -20,10 +19,11 @@ export class LoginPage {
         console.log('User logged in successfully!', userCredential);
         this.navCtrl.navigateForward(['/home']);
       })
-      .catch(error => {
-        console.error('Error logging in user:', error);
-        this.toastr.error('Email ou senha incorretos. Por favor, verifique suas credenciais e tente novamente.', 'Erro de Login')
-      });
+      .catch(error => console.error('Error logging in user:', error));
+  }
+
+  sucessoLogin() {
+    this.navCtrl.navigateForward('/home');
   }
 
   navegarCadastro() {
