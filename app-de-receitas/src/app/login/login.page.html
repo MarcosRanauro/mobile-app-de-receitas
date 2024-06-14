@@ -1,8 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -31,5 +28,6 @@
       <ion-button expand="full" type="submit" class="ion-margin-top">Login</ion-button>
     </form>
     <ion-button expand="block" (click)="navegarCadastro()">Register</ion-button>
+    <ion-button expand="block" color="secondary" class="ion-margin-top" (click)="loginWithGoogle()">Login With Google</ion-button>
   </div>
 </ion-content>
