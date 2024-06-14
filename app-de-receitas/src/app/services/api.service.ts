@@ -22,4 +22,8 @@ export class ApiService {
   buscarDetalhesReceita(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/lookup.php?i=${id}`);
   }
+
+  pesquisarReceitas(pesquisa: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/search.php?s=${pesquisa}`);
+  }
 }

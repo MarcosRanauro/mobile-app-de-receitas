@@ -21,7 +21,7 @@
     </ion-card-header>
     <ion-card-content class="card-content">
       <p *ngIf="receita.strTags"><strong>Tags:</strong> {{ receita.strTags }}</p>
-      <p><strong>Instruções:</strong></p>
+      <p><strong>Instructions:</strong></p>
       <p>{{ receita.strInstructions }}</p>
       <ion-button expand="full" fill="outline" color="tertiary" [href]="receita.strYoutube" *ngIf="receita.strYoutube"
         target="_blank">

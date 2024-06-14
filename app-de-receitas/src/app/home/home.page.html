@@ -16,8 +16,15 @@
 
 <ion-content [fullscreen]="true" class="container">
   <div class="search-container">
-    <ion-searchbar placeholder="Search for a category"></ion-searchbar>
+    <ion-searchbar (ionInput)="pesquisar($event)" placeholder="Search for a category"></ion-searchbar>
   </div>
+  <ion-list>
+    <ion-item *ngFor="let receita of receitas">
+      <ion-button (click)="abrirDetalhesReceita(receita.idMeal)">
+        <ion-label>{{ receita.strMeal }}</ion-label>
+      </ion-button>
+    </ion-item>
+  </ion-list>
   <div class="categories-container">
     <h2>Categories</h2>
     <p>Choose a category to see the recipes</p>

@@ -18,12 +18,12 @@ export class LoginPage {
     this.authService.loginUser(this.email, this.password)
       .then((userCredential) => {
         console.log('User logged in successfully!', userCredential);
-        this.navCtrl.navigateForward(['/home']);
+        this.sucessoLogin();
       })
       .catch(error => {
         console.error('Error logging in user:', error);
         this.toastr.error('Email ou senha incorretos. Por favor, verifique suas credenciais e tente novamente.', 'Erro de Login', {
-          timeOut: 3000,
+          timeOut: 5000,
           progressBar: true,
           closeButton: true
         });
@@ -35,7 +35,7 @@ export class LoginPage {
       .catch(error => {
         console.error('Error during Google login:', error);
         this.toastr.error('Erro ao realizar login com o Google. Por favor, tente novamente.', 'Erro de Login', {
-          timeOut: 3000,
+          timeOut: 5000,
           progressBar: true,
           closeButton: true
         });
@@ -43,6 +43,11 @@ export class LoginPage {
   }
 
   sucessoLogin() {
+    this.toastr.success('Login realizado com sucesso.', 'Sucesso', {
+      timeOut: 5000,
+      progressBar: true,
+      closeButton: true
+    });
     this.navCtrl.navigateForward('/home');
   }
 

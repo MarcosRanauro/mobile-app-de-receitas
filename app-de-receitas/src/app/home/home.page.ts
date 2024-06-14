@@ -8,7 +8,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  receitas: any[] = [];
   dataReturned: any;
 
   constructor(private apiService: ApiService, private navCtrl: NavController) {}
@@ -32,4 +32,28 @@ export class HomePage {
     this.navCtrl.navigateForward(`/perfil`);
   }
 
+  pesquisar(event: any) {
+    const pesquisa = event.target?.value || '';
+
+    if(pesquisa.trim() === '') {
+      this.receitas = [];
+      return;
+    }
+
+    this.apiService.pesquisarReceitas(pesquisa)
+    .subscribe((data: any) => {
+      if(data.meals) {
+        this.receitas = data.meals;
+      } else {
+        this.receitas = [];
+      }
+    }, error => {
+      console.error('Erro ao buscar receitas:', error);
+      this.receitas = [];
+    });
+  }
+
+  abrirDetalhesReceita(id: string) {
+    this.navCtrl.navigateForward(`/detalhes/${id}`);
+  }
 }
