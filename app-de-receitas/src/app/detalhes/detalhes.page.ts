@@ -14,14 +14,21 @@ export class DetalhesPage implements OnInit {
   id: string = '';
   receita: any;
   video: any;
+  isFavorite: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private favoriteService: FavoritesService, private toastr: ToastrService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private favoriteService: FavoritesService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
       this.id = idParam;
       this.buscarDetalhesReceita();
+      this.verificarFavorito();
     }
   }
 
@@ -30,6 +37,10 @@ export class DetalhesPage implements OnInit {
       this.receita = data.meals[0];
       console.log(this.receita);
     });
+  }
+
+  async verificarFavorito() {
+    this.isFavorite = await this.favoriteService.isFavorite(this.id);
   }
 
   mostrarVideo() {
@@ -43,8 +54,41 @@ export class DetalhesPage implements OnInit {
     return `https://www.youtube.com/embed/${videoId}`;
   }
 
-  adicionarAosFavoritos() {
-    this.favoriteService.addFavorite(this.receita);
-    this.toastr.success('Receita adicionada aos favoritos', 'Favoritos');
+  async adicionarAosFavoritos() {
+    try {
+      await this.favoriteService.addFavorite(this.receita);
+      this.isFavorite = true;
+      this.toastr.success('Receita adicionada aos favoritos.', 'Sucesso', {
+        timeOut: 5000,
+        progressBar: true,
+        closeButton: true
+      });
+    } catch (error) {
+      console.error('Erro ao adicionar receita aos favoritos:', error);
+      this.toastr.error('Erro ao adicionar receita aos favoritos. Por favor, tente novamente.', 'Erro', {
+        timeOut: 5000,
+        progressBar: true,
+        closeButton: true
+      });
+    }
+  }
+
+  async removerDosFavoritos() {
+    try {
+      await this.favoriteService.removeFavorite(this.id);
+      this.isFavorite = false;
+      this.toastr.success('Receita removida dos favoritos.', 'Sucesso', {
+        timeOut: 5000,
+        progressBar: true,
+        closeButton: true
+      });
+    } catch (error) {
+      console.error('Erro ao remover receita dos favoritos:', error);
+      this.toastr.error('Erro ao remover receita dos favoritos. Por favor, tente novamente.', 'Erro', {
+        timeOut: 5000,
+        progressBar: true,
+        closeButton: true
+      });
+    }
   }
 }
