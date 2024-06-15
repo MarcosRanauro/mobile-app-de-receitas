@@ -10,13 +10,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Favoritos</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Página Favoritos</strong>
-  </div>
+  <ion-list *ngIf="favoritos.length > 0; else noFavorites">
+    <ion-item *ngFor="let receita of favoritos" (click)="abrirDetalhesReceita(receita.idMeal)">
+      <ion-thumbnail slot="start">
+        <img [src]="receita.strMealThumb" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ receita.strMeal }}</h2>
+        <p>{{ receita.strArea }} - {{ receita.strCategory }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ng-template #noFavorites>
+    <ion-item>
+      <ion-label>
+        Nenhuma receita favorita encontrada.
+      </ion-label>
+    </ion-item>
+  </ng-template>
 </ion-content>

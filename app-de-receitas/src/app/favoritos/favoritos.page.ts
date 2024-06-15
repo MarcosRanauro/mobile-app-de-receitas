@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritosPage implements OnInit {
 
-  constructor() { }
+  favoritos: any[] = [];
+
+  constructor(private navCtrl: NavController, private favoritesService: FavoritesService) { }
 
   ngOnInit() {
+    this.favoritos = this.favoritesService.getFavorites();
   }
 
+  abrirDetalhesReceita(id: string) {
+    this.navCtrl.navigateForward(`/detalhes/${id}`);
+  }
 }

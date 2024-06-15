@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-detalhes',
@@ -13,7 +15,7 @@ export class DetalhesPage implements OnInit {
   receita: any;
   video: any;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private favoriteService: FavoritesService, private toastr: ToastrService) { }
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -39,5 +41,10 @@ export class DetalhesPage implements OnInit {
   getVideoEmbedUrl(url: string): string {
     const videoId = url.split('v=')[1];
     return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  adicionarAosFavoritos() {
+    this.favoriteService.addFavorite(this.receita);
+    this.toastr.success('Receita adicionada aos favoritos', 'Favoritos');
   }
 }
