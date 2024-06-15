@@ -14,7 +14,15 @@ export class FavoritosPage implements OnInit {
   constructor(private navCtrl: NavController, private favoritesService: FavoritesService) { }
 
   ngOnInit() {
-    this.favoritos = this.favoritesService.getFavorites();
+    this.getFavorites();
+  }
+
+  async getFavorites() {
+    try {
+      this.favoritos = await this.favoritesService.getFavoritesFromFirestore();
+    } catch (error) {
+      console.error('Erro ao buscar favoritos do Firestore:', error);
+    }
   }
 
   abrirDetalhesReceita(id: string) {

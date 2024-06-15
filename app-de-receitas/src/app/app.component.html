@@ -35,7 +35,7 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle auto-hide="false">
-          <ion-item [routerLink]="['/logout']">
+          <ion-item (click)="logout()">
             <ion-icon slot="start" name="log-out" src="../assets/icon/box-arrow-left.svg"></ion-icon>
             Logout
           </ion-item>

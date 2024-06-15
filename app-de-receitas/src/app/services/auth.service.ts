@@ -4,6 +4,7 @@ import { getDatabase, ref, set, push } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { environment } from '../../environments/environment';
 import { NavController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 // Inicializando o Firebase
 const app = initializeApp(environment.firebaseConfig);
@@ -16,7 +17,7 @@ const auth = getAuth(app);
 export class AuthService {
   private dbPath = '/users';
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private afAuth: AngularFireAuth) { }
 
   registerUser(user: any): Promise<void> {
     return createUserWithEmailAndPassword(auth, user.email, user.password)
@@ -54,5 +55,17 @@ export class AuthService {
       .catch(error => {
         console.error('Error during Google login:', error);
       });
+  }
+
+  async logout(): Promise<void> {
+    try {
+      await this.afAuth.signOut();
+      setTimeout(() => {
+        this.navCtrl.navigateRoot('/login');
+      }, 500);
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+      throw error;
+    }
   }
 }
