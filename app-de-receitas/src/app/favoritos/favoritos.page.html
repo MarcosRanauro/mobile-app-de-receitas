@@ -4,19 +4,25 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Favoritos
+      Favorites
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Favoritos</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Página Favoritos</strong>
-  </div>
+<ion-content>
+  <ion-list lines="full">
+    <ion-item *ngFor="let receita of favoritos" (click)="abrirDetalhesReceita(receita.idMeal)">
+      <ion-thumbnail slot="start">
+        <img [src]="receita.strMealThumb" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ receita.strMeal }}</h2>
+        <p>{{ receita.strCategory }}</p>
+        <p>{{ receita.strArea }}</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end" color="dark">
+        see details
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

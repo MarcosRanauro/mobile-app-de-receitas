@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <strong>Recipe details:</strong> {{ receita?.strMeal }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="container">
+  <ion-card *ngIf="receita" class="card-container">
+    <img [src]="receita.strMealThumb" alt="{{ receita.strMeal }} image" class="recipe-image" />
+    <ion-card-header class="card-header">
+      <ion-card-title>{{ receita.strMeal }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-chip color="primary">{{ receita.strArea }}</ion-chip>
+        <ion-chip color="secondary">{{ receita.strCategory }}</ion-chip>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="card-content">
+      <p *ngIf="receita.strTags"><strong>Tags:</strong> {{ receita.strTags }}</p>
+      <p><strong>Instructions:</strong></p>
+      <p>{{ receita.strInstructions }}</p>
+      <ion-button expand="full" fill="outline" color="tertiary" [href]="receita.strYoutube" *ngIf="receita.strYoutube"
+        target="_blank">
+        Ver no YouTube
+      </ion-button>
+      <ion-button expand="full" color="primary" (click)="adicionarAosFavoritos()">
+        Adicionar aos favoritos
+      </ion-button>
+      <ion-button *ngIf="isFavorite" expand="full" color="danger" (click)="removerDosFavoritos()">
+        Remover dos favoritos
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

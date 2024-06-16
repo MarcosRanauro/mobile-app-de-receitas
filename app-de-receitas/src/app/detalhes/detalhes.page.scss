@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 16px;
+}
+
+.card-container {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.card-header ion-card-title {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+}
+
+.card-header ion-chip {
+  margin: 4px;
+}
+
+.card-content {
+  font-size: 1em;
+}
+
+.card-content p {
+  margin-bottom: 12px;
+}
+
+.card-content ion-button {
+  margin-top: 16px;
+}

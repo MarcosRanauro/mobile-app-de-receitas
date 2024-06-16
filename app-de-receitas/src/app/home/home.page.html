@@ -3,20 +3,47 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Blank
+    <ion-buttons slot="start">
+      <ion-img src="../../assets/icon/logo2.jpeg" class="logo"></ion-img>
+    </ion-buttons>
+    <ion-title class="titulo">
+      My Recipes
     </ion-title>
+    <ion-buttons slot="end" (click)="navegarPerfil()">
+      <ion-avatar>
+        <img src="../../assets/icon/person-circle.svg" class="img-avatar" />
+      </ion-avatar>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Página Home</strong>
+<ion-content [fullscreen]="true" class="container">
+  <div class="search-container">
+    <ion-searchbar (ionInput)="pesquisar($event)" placeholder="Search for a category"></ion-searchbar>
   </div>
+  <ion-list>
+    <ion-item *ngFor="let receita of receitas">
+      <ion-button (click)="abrirDetalhesReceita(receita.idMeal)" class="botao-pesquisa">
+        <ion-label>{{ receita.strMeal }}</ion-label>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <div class="categories-container">
+    <h2>Categories</h2>
+    <p>Choose a category to see the recipes</p>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let category of dataReturned?.categories">
+        <ion-card class="card-container">
+          <ion-button (click)="abrirCategoria(category.strCategory)" fill="clear" class="card-button">
+            <img [src]="category.strCategoryThumb" alt="{{ category.strCategory }} image" />
+          </ion-button>
+          <ion-card-header class="card-header">
+            <ion-card-title>{{ category.strCategory }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

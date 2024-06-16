@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form (ngSubmit)="salvarDados()">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="user.displayName" name="displayName" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" class="email-label">Email</ion-label>
+      <ion-input [(ngModel)]="user.email" name="email" type="email" readonly class="readonly-input"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit" color="dark" class="save-button">Save</ion-button>
+  </form>
+</ion-content>

@@ -1,27 +1,134 @@
-#container {
+ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo {
+  margin-left: 25px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  margin-right: 0px;
+  margin-left: 25px;
+}
+
+.centered-title {
   text-align: center;
+  flex-grow: 1;
+}
 
+ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.img-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+ion-buttons[slot="end"] {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 10px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.container {
+  padding: 16px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.search-container {
+  padding: 10px 0;
 }
 
-#container a {
-  text-decoration: none;
+.botao-pesquisa {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --border-radius: 5px;
+  --background: #f4f4f4;
+  --color: #333;
+}
+
+.botao-pesquisa ion-label {
+  flex-grow: 1;
+  text-align: left;
+  padding: 10px;
+}
+
+.categories-container {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-container h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+ion-grid {
+  padding: 0;
+}
+
+ion-card {
+  margin: 8px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.card-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+ion-card-header {
+  font-size: 1em;
+  text-align: center;
+}
+
+ion-card-content {
+  font-size: 0.8em;
+  color: grey;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  ion-col {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
 }
