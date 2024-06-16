@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-editar-perfil',
+  templateUrl: './editar-perfil.page.html',
+  styleUrls: ['./editar-perfil.page.scss'],
 })
-export class PerfilPage {
-  user: any;
+export class EditarPerfilPage implements OnInit {
+  user: any = {};
 
   constructor(
     private navCtrl: NavController,
@@ -28,8 +28,13 @@ export class PerfilPage {
     }
   }
 
-  editarPerfil() {
-    this.navCtrl.navigateForward('editar-perfil');
+  async salvarDados() {
+    try {
+      await this.userService.updateUserData(this.user);
+      this.navCtrl.navigateBack('/perfil');
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error);
+    }
   }
 
 }

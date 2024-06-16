@@ -1,0 +1,16 @@
+.readonly-input {
+  background-color: #f0f0f0; /* Cinza claro */
+  color: #6c757d; /* Cor do texto */
+  padding: 8px; /* Espaçamento interno */
+  font-size: 14px; /* Tamanho da fonte */
+  border-radius: 4px; /* Arredondamento das bordas */
+  border: 1px solid #ccc; /* Borda cinza */
+  width: calc(100% - 24px); /* Largura ajustada */
+  max-width: 400px; /* Largura máxima */
+  box-sizing: border-box; /* Box-sizing para incluir padding e border na largura */
+  margin-top: 8px; /* Margem superior para separar do label */
+}
+
+.email-label {
+  margin-bottom: 8px; /* Margem inferior para separar do campo abaixo */
+}

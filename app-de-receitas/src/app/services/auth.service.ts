@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential, GoogleAuthProvider, signInWithPopup, updateProfile, User, updateEmail } from 'firebase/auth';
 import { getDatabase, ref, set, push } from "firebase/database";
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
 import { environment } from '../../environments/environment';
 import { NavController } from '@ionic/angular';
@@ -10,6 +11,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 const app = initializeApp(environment.firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
+const firestore = getFirestore(app);
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +23,14 @@ export class AuthService {
 
   registerUser(user: any): Promise<void> {
     return createUserWithEmailAndPassword(auth, user.email, user.password)
-      .then(result => {
-        const userRef = push(ref(db, this.dbPath));
-        return set(userRef, { ...user, uid: result.user?.uid });
+      .then(async result => {
+        const userRef = doc(firestore, `users/${result.user?.uid}`);
+        await setDoc(userRef, {
+          displayName: user.name,
+          email: user.email,
+          uid: result.user?.uid
+        }, { merge: true });
+        this.navCtrl.navigateForward(['/home']);
       })
       .catch(error => {
         throw error;
@@ -44,12 +51,12 @@ export class AuthService {
     return signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        const userRef = ref(db, `${this.dbPath}/${user.uid}`);
-        set(userRef, {
-          name: user.displayName,
+        const userRef = doc(firestore, `users/${user.uid}`);
+        setDoc(userRef, {
+          displayName: user.displayName,
           email: user.email,
           uid: user.uid
-        });
+        }, { merge: true });
         this.navCtrl.navigateForward(['/home']);
       })
       .catch(error => {
@@ -66,6 +73,30 @@ export class AuthService {
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
       throw error;
+    }
+  }
+
+  async getCurrentUser(): Promise<User | null> {
+    return auth.currentUser;
+  }
+
+  async updateUserProfile(user: any): Promise<void> {
+    const currentUser = await this.getCurrentUser();
+    if (currentUser) {
+      await updateProfile(currentUser, {
+        displayName: user.displayName
+      });
+
+      if (user.email && user.email !== currentUser.email) {
+        await updateEmail(currentUser, user.email);
+      }
+
+      const userRef = doc(firestore, `users/${currentUser.uid}`);
+      await setDoc(userRef, user, { merge: true });
+
+      console.log('Perfil atualizado com sucesso!');
+    } else {
+      console.error('Usuário não autenticado');
     }
   }
 }
