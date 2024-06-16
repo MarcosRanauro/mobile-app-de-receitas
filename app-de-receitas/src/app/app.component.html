@@ -1,14 +1,14 @@
 <ion-app>
   <ion-menu side="start" menuId="custom" contentId="main" *ngIf="!isLoginPage">
     <ion-header>
-      <ion-toolbar color="secondary">
-        <ion-title>Menu</ion-title>
+      <ion-toolbar color="dark">
+        <ion-title>My Recipes</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
         <ion-item-divider>
-          <ion-text color="secondary"><strong>My Recipes</strong></ion-text>
+          <ion-text color="dark"><strong>Discover</strong></ion-text>
         </ion-item-divider>
         <ion-menu-toggle auto-hide="false">
           <ion-item [routerLink]="['/home']">
@@ -26,7 +26,7 @@
 
       <ion-list>
         <ion-item-divider>
-          <ion-text color="secondary"><strong>User</strong></ion-text>
+          <ion-text color="dark"><strong>User</strong></ion-text>
         </ion-item-divider>
         <ion-menu-toggle auto-hide="false">
           <ion-item [routerLink]="['/perfil']">
@@ -38,6 +38,18 @@
           <ion-item (click)="logout()">
             <ion-icon slot="start" name="log-out" src="../assets/icon/box-arrow-left.svg"></ion-icon>
             Logout
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-list>
+        <ion-item-divider>
+          <ion-text color="dark"><strong>Developers</strong></ion-text>
+        </ion-item-divider>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item [routerLink]="['/integrantes']">
+            <ion-icon slot="start" name="people" src="../assets/icon/people-circle-outline.svg"></ion-icon>
+            Developers
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
