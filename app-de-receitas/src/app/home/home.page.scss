@@ -1,3 +1,20 @@
+ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo {
+  margin-left: 25px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  margin-right: 0px;
+  margin-left: 25px;
+}
+
 .centered-title {
   text-align: center;
   flex-grow: 1;
@@ -13,6 +30,7 @@ ion-avatar {
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  object-fit: cover;
 }
 
 .img-avatar {
@@ -32,6 +50,32 @@ ion-buttons[slot="end"] {
 
 .search-container {
   padding: 10px 0;
+}
+
+.botao-pesquisa {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --border-radius: 5px;
+  --background: #f4f4f4;
+  --color: #333;
+}
+
+.botao-pesquisa ion-label {
+  flex-grow: 1;
+  text-align: left;
+  padding: 10px;
+}
+
+.categories-container {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .categories-container h2 {
