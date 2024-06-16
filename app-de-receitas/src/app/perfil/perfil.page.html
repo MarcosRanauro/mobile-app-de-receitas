@@ -10,13 +10,13 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Informações do Usuário</ion-card-title>
+      <ion-card-title>User Information</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item>
           <ion-label>
-            <h2>Nome:</h2>
+            <h2>Name:</h2>
             <p> {{ user?.displayName }} </p>
           </ion-label>
         </ion-item>
@@ -30,5 +30,5 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" color="primary" (click)="editarPerfil()">Editar Perfil</ion-button>
+  <ion-button expand="full" color="dark" (click)="editarPerfil()">Edit profile</ion-button>
 </ion-content>

@@ -38,4 +38,8 @@ export class CadastroPage {
         });
       });
   }
+
+  voltarLogin() {
+    this.navCtrl.navigateBack('/login');
+  }
 }
