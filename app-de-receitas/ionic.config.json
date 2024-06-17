@@ -1,5 +1,7 @@
 {
   "name": "app-de-receitas",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
