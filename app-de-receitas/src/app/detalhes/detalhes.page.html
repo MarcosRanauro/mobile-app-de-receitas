@@ -25,13 +25,13 @@
       <p>{{ receita.strInstructions }}</p>
       <ion-button expand="full" fill="outline" color="tertiary" [href]="receita.strYoutube" *ngIf="receita.strYoutube"
         target="_blank">
-        Ver no YouTube
+        View on YouTube
       </ion-button>
       <ion-button expand="full" color="primary" (click)="adicionarAosFavoritos()">
-        Adicionar aos favoritos
+        Add to Favorites
       </ion-button>
       <ion-button *ngIf="isFavorite" expand="full" color="danger" (click)="removerDosFavoritos()">
-        Remover dos favoritos
+        Remove from favorites
       </ion-button>
     </ion-card-content>
   </ion-card>
